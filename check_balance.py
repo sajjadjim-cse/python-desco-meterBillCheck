@@ -8,7 +8,7 @@ import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 def fetch_data(account_no: str, meter_no: str):
-    URL = "https://prepaid.desco.org.bd/api/unified/customer/getBalance"
+    URL = "https://prepaid.desco.org.bd/api/tkdes/customer/getBalance"
     params = {"accountNo": account_no, "meterNo": meter_no}
     try:
         res = requests.get(URL, params=params, verify=False, timeout=20)
