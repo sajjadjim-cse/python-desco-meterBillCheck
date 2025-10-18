@@ -47,7 +47,7 @@ def main():
     else:
         code = api_resp.get("code")
         desc = api_resp.get("desc")
-        msg = f"⚠️ DESCO API returned no data. code={code}, desc={desc}\nChecked at {datetime.now().isoformat()}"
+        msg = f"⚠️ DESCO API returned no data.\n Hi Sajjad Hossain JIM\n Account Number :{account_no} (Meter Number :{meter_no}) \n code={code},\n Description={desc}\nChecked at {datetime.now().isoformat()}"
 
     tg = telegram_notify(token, chat_id, msg)
     print("Telegram result:", tg)
