@@ -50,7 +50,10 @@ It is possible that behind the scenes, DESCO is using multiple endpoints for que
 The endpoint this script is using is:
 
 ```text
-https://prepaid.desco.org.bd/api/unified/customer/getBalance?accountNo=
+https://prepaid.desco.org.bd/api/tkdes/customer/getBalance?accountNo=
+
+otherwise use this remove "tkdes" and write  unified
+
 ```
 
 So please test this endpoint with your DESCO account and first verify that this is working for your meter.
