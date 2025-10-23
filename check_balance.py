@@ -40,7 +40,7 @@ def telegram_notify(balance, currentMonthConsumption, readingTime):
     alert_message = ""
     try:
         if float(balance) < 200:
-            alert_message = "\n⚠️ Please Recharge — Your Balance is Low!"
+            alert_message = "\n⚠️⚠️⚠️ Please Recharge — Your Balance is Low!"
     except:
         pass  # In case balance isn't a number
 
@@ -48,8 +48,9 @@ def telegram_notify(balance, currentMonthConsumption, readingTime):
         r = requests.post(url, json={
             "chat_id": chat_id,
             "text": (
-                f"⚡️⚡️⚡️Desco Current Bill⚡️⚡️⚡️\n"
-                f"💁‍♂️S.M. SAJJAD HOSSAIN JIM\n"
+                f"⚡️ 🌿 Desco Prepaid Meter Bill ⚡️ 🌿\n"
+                f"Today Date (Live): {readingTime or __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+                f" 👨🏻‍💻SAJJAD HOSSAIN JIM\n"
                 f"⏦Account Number : {os.environ['ACCOUNT_NO']}\n"
                 f"Used Balance this Month : {currentMonthConsumption}\n"
                 f"The current DESCO balance is {balance}\n"
