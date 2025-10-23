@@ -53,7 +53,7 @@ def telegram_notify(balance, currentMonthConsumption, readingTime):
                 f"⏦Account Number : {os.environ['ACCOUNT_NO']}\n"
                 f"Used Balance this Month : {currentMonthConsumption}\n"
                 f"The current DESCO balance is {balance}\n"
-                f"Reading Time: {readingTime}"
+                # f"Reading Time: {readingTime}"
                 f"{alert_message}"
             )
         }, timeout=20)
