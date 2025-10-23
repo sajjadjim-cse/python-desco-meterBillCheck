@@ -21,7 +21,7 @@ def fetch_data():
             balance = inner_data.get("balance")
             currentMonthConsumption = inner_data.get("currentMonthConsumption")
             readingTime = inner_data.get("readingTime")
-            return balance, currentMonthConsumption , readingTime
+            return balance, currentMonthConsumption, readingTime
         else:
             return None
     except Exception as err:
@@ -29,15 +29,34 @@ def fetch_data():
         return None
 
 
-def telegram_notify(balance, currentMonthConsumption , readingTime):
+def telegram_notify(balance, currentMonthConsumption, readingTime):
     token = os.getenv("TELEGRAM_BOT_TOKEN")
     chat_id = os.getenv("TELEGRAM_CHAT_ID")
     if not token or not chat_id:
         return False, "Telegram not configured (TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID)"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
+
+    # ✅ Check balance and add alert if low
+    alert_message = ""
+    try:
+        if float(balance) < 200:
+            alert_message = "\n⚠️ Please Recharge — Your Balance is Low!"
+    except:
+        pass  # In case balance isn't a number
+
     try:
         r = requests.post(url, json={
-                          "chat_id": chat_id, "text": f"⚡️⚡️⚡️Desco Current Bill⚡️⚡️⚡️\n💁‍♂️S.M. SAJJAD HOSSAIN JIM \n⏦Account Number : {os.environ['ACCOUNT_NO']}\nUsed Balance this Month :{currentMonthConsumption}\nThe current desco balance is {balance}\nReading Time: {readingTime}"}, timeout=20)
+            "chat_id": chat_id,
+            "text": (
+                f"⚡️⚡️⚡️Desco Current Bill⚡️⚡️⚡️\n"
+                f"💁‍♂️S.M. SAJJAD HOSSAIN JIM\n"
+                f"⏦Account Number : {os.environ['ACCOUNT_NO']}\n"
+                f"Used Balance this Month : {currentMonthConsumption}\n"
+                f"The current DESCO balance is {balance}\n"
+                f"Reading Time: {readingTime}"
+                f"{alert_message}"
+            )
+        }, timeout=20)
         if r.ok:
             return True, "Telegram sent"
         return False, f"Telegram failed: HTTP {r.status_code} {r.text}"
@@ -51,7 +70,6 @@ def send_notification(balance, currentMonthConsumption, readingTime):
 
 
 def main():
-    # balance = fetch_data()
     balance, currentMonthConsumption, readingTime = fetch_data()
     if balance is not None:
         send_notification(balance, currentMonthConsumption, readingTime)
