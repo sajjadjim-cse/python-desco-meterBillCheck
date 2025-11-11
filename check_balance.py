@@ -49,7 +49,7 @@ def telegram_notify(balance, currentMonthConsumption, readingTime):
             "chat_id": chat_id,
             "text": (
                 f"⚡️ 🌿 Desco Prepaid Meter Bill ⚡️ 🌿\n"
-                f"Today Date (Live): {readingTime or __import__('datetime').datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+                f"Today Date : {readingTime or __import__('datetime').datetime.now().strftime('%Y-%m-%d')}\n"
                 f" 👨🏻‍💻SAJJAD HOSSAIN JIM\n"
                 f"⏦Account Number : {os.environ['ACCOUNT_NO']}\n"
                 f"Used Balance this Month : {currentMonthConsumption}\n"
