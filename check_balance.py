@@ -50,8 +50,8 @@ def telegram_notify(balance, currentMonthConsumption, readingTime):
             "text": (
                 f"⚡️ 🌿 Desco Prepaid Meter Bill ⚡️ 🌿\n"
                 f"Today Date : {readingTime or __import__('datetime').datetime.now().strftime('%Y-%m-%d')}\n"
-                f" 👨🏻‍💻SAJJAD HOSSAIN JIM\n"
-                f"⏦Account Number : {os.environ['ACCOUNT_NO']}\n"
+                f"👨🏻‍💻SAJJAD HOSSAIN JIM\n"
+                f"Account Number : {os.environ['ACCOUNT_NO']}\n"
                 f"This Month total used balance: {currentMonthConsumption}\n"
                 f"Current reaminning balance : {balance}\n"
                 # f"Reading Time: {readingTime}"
