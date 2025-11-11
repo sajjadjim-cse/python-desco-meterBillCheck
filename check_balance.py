@@ -53,7 +53,7 @@ def telegram_notify(balance, currentMonthConsumption, readingTime):
                 f"👨🏻‍💻SAJJAD HOSSAIN JIM\n"
                 f"Account Number : {os.environ['ACCOUNT_NO']}\n"
                 f"This Month total used balance: {currentMonthConsumption}\n"
-                f"Current reaminning balance : {balance}\n"
+                f"Available remainnig balance : {balance}\n"
                 # f"Reading Time: {readingTime}"
                 f"{alert_message}"
             )
